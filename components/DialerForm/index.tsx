@@ -42,6 +42,10 @@ const DialerForm = () => {
     trigger("phone");
   };
 
+  const clearPhoneFocus = () => {
+    inputRef?.current?.blur();
+  };
+
   return (
     <Form
       className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full "
@@ -55,9 +59,10 @@ const DialerForm = () => {
         <Input
           ref={inputRef}
           country="BR"
+          defaultCountry="BR"
+          value={watch("phone")}
           international={false}
           placeholder={phonePlaceholder}
-          value={watch("phone")}
           onChange={onChangePhone}
           className={`phone-input ${showError ? "!input-error" : ""}`}
         />
@@ -73,7 +78,7 @@ const DialerForm = () => {
 
       <div className="flex flex-row-reverse">
         <span className="sr-only">Submit</span>
-        <button hidden type="submit" />
+        <button hidden type="submit" onClick={clearPhoneFocus} />
         <button
           className="flex flex-1 btn btn-primary btn-outline normal-case px-0 disabled:opacity-50"
           onClick={dialerTo("wa")}
