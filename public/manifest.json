@@ -4,13 +4,20 @@
   "description": "Discador WhatsApp e Telegram",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "orientation": "vertical",
   "icons": [
     {
       "src": "/ZapTo-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/ZapTo-192x192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/ZapTo-256x256.png",
