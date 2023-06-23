@@ -2,6 +2,8 @@ import GithubCorner from "@/components/GithubCorner";
 import "./globals.css";
 import { LuToyBrick } from "react-icons/lu";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,6 +25,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
         </header>
 
         <div className="flex flex-1 flex-col" {...props} />
+        <Analytics />
 
         <footer className="footer justify-center items-center  text-neutral-content z-20 min-h-16 mb-12">
           <a
