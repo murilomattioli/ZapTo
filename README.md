@@ -1,2 +1,2 @@
-# zapTo
+# ZapTo
 Discador para WhatsApp
