@@ -24,11 +24,11 @@ const RootLayout = (props: { children: React.ReactNode }) => {
 
         <div className="flex flex-1 flex-col" {...props} />
 
-        <footer className="footer justify-center items-center  text-neutral-content z-20 min-h-16">
+        <footer className="footer justify-center items-center  text-neutral-content z-20 min-h-16 mb-12">
           <a
             href="https://github.com/murilomattioli"
             target="_blank"
-            className="btn btn-active btn-link normal-case flex font-mono  opacity-70 hover:opacity-100 items-center"
+            className="btn btn-active btn-link btn-sm normal-case flex font-mono  opacity-70 hover:opacity-100 items-center"
           >
             <LuToyBrick id="toyBrick" />
             Desenvolvido por MLM
