@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply overflow-hidden  flex flex-1 flex-col h-[100vh] bg-black 
+  @apply overflow-hidden flex flex-1 flex-col h-[100vh] bg-black 
 }
 
 input.phone-input {
