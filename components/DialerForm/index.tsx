@@ -54,7 +54,7 @@ const DialerForm = () => {
       <div className="form-control mb-2">
         <span className="sr-only">Phone</span>
         <label className="label">
-          <span className="label-text text-zinc-400">Discar para:</span>
+          <span className="label-text text-zinc-300">Discar para:</span>
         </label>
         <Input
           ref={inputRef}

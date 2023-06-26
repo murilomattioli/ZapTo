@@ -7,5 +7,5 @@ body {
 }
 
 input.phone-input {
-  @apply input input-ghost bg-neutral-900 bg-opacity-60 border-none w-full join-item text-center [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none !text-white placeholder:text-neutral-600
+  @apply input input-ghost bg-neutral-900 bg-opacity-60 border-none w-full join-item text-center [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none !text-white placeholder:text-neutral-500
 }
