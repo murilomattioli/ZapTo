@@ -48,7 +48,7 @@ const DialerForm = () => {
 
   return (
     <Form
-      className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full "
+      className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full bg-black"
       control={control}
     >
       <div className="form-control mb-2">

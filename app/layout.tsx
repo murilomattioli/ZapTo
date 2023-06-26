@@ -12,22 +12,22 @@ const inter = Inter({
 
 const RootLayout = (props: { children: React.ReactNode }) => {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" className={inter.className}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="ZapTo" href="/ZapTo-512x512.png"></link>
         <meta name="theme-color" content="#000" />
         <title>ZapTo - Discador WhatsApp e Telegram</title>
       </head>
-      <body className={inter.className}>
+      <body className="flex flex-1 ">
         <header>
           <GithubCorner />
         </header>
 
-        <div className="flex flex-1 flex-col" {...props} />
+        <div className="flex flex-1 flex-col z-10" {...props} />
         <Analytics />
 
-        <footer className="footer justify-center items-center  text-neutral-content z-20 min-h-16 mb-12">
+        <footer className="footer justify-center items-center  text-neutral-content min-h-16 mb-12 fixed top-[calc(100vh-112px)] z-0">
           <a
             href="https://github.com/murilomattioli"
             target="_blank"
