@@ -48,13 +48,13 @@ const DialerForm = () => {
 
   return (
     <Form
-      className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full "
+      className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full bg-black"
       control={control}
     >
       <div className="form-control mb-2">
         <span className="sr-only">Phone</span>
         <label className="label">
-          <span className="label-text text-zinc-400">Discar para:</span>
+          <span className="label-text text-zinc-300">Discar para:</span>
         </label>
         <Input
           ref={inputRef}
