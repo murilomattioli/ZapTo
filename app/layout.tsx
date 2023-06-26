@@ -27,7 +27,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
         <div className="flex flex-1 flex-col z-10" {...props} />
         <Analytics />
 
-        <footer className="footer justify-center items-center  text-neutral-content min-h-16 mb-12 fixed top-[calc(100vh-112px)] z-0">
+        <footer className="footer justify-center items-center  text-neutral-content min-h-16 mb-12 fixed top-[calc(100vh-140px)] z-0">
           <a
             href="https://github.com/murilomattioli"
             target="_blank"
