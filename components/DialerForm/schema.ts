@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { FULL_PHONE_NUMBER, phonePlaceholder } from "./constants";
 
 export type DialerFormSchema = {
   phone: string;
@@ -10,16 +9,29 @@ const schema: yup.ObjectSchema<DialerFormSchema> = yup
   .shape({
     phone: yup
       .string()
-      .max(FULL_PHONE_NUMBER.length, `Ex: ${phonePlaceholder}`)
-      .test("Número inválido!", `Ex: ${phonePlaceholder}`, (val) => {
-        return val?.length === FULL_PHONE_NUMBER.length;
+      .test({
+        name: "Código do País",
+        message: "O país deve ser +55 (Brasil)",
+        test: (val) => {
+          const firstThreeDigits = val?.slice(0, 3);
+          const isValid = firstThreeDigits === "+55";
+          return isValid;
+        },
       })
       .test({
-        name: "Vazio! P",
-        message: "",
-        test: (val) => val === "",
+        name: "Número de Telefone",
+        message: `Ex: (00)0000-0000 ou (00)00000-0000;
+          O numero deve ter 10 ou 11 dígitos`,
+        test: (val) => {
+          const allDigitsExceptCountryCode = val?.slice(3);
+          const rules = [
+            allDigitsExceptCountryCode?.length === 10,
+            allDigitsExceptCountryCode?.length === 11,
+          ];
+          const isValid = rules.some((rule) => rule);
+          return isValid;
+        },
       })
-      .typeError(`Ex: ${FULL_PHONE_NUMBER}`)
       .required("Obrigatório"),
   })
   .noUnknown()
