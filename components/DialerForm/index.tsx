@@ -15,10 +15,10 @@ const DialerForm = () => {
   const {
     watch,
     setValue,
-    control,
     trigger,
     formState: { submitCount, errors },
     clearErrors,
+    control,
   } = useForm({
     defaultValues: { phone: "" },
     resolver: yupResolver(schema),
