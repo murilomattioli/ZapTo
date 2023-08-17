@@ -14,9 +14,8 @@ O projeto **ZapTo** está em constante desenvolvimento, com foco nas seguintes t
 ## 💻 Pré-requisitos
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
+* Você instalou a versão `node v.18.0.0 / npm 9.6.4`
 * Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
 ## 🚀 Instalando **ZapTo**
 Para instalar o ZapTo, siga estas etapas:
