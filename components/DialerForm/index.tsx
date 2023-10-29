@@ -4,11 +4,17 @@ import { Form, useForm } from "react-hook-form";
 import schema from "./schema";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
+import { GoPaste } from "react-icons/go";
 import Input from "react-phone-number-input/input";
-import React from "react";
+import React, { useCallback } from "react";
 import { E164Number } from "libphonenumber-js/types";
 import { DialerTo } from "./types";
-import { phonePlaceholder } from "./constants";
+import {
+  completePhoneNumberMaxLength,
+  phoneMaxLength,
+  phonePlaceholder,
+} from "./constants";
+import readClipboardText from "@/utils/readClipboardText";
 
 const DialerForm = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -36,14 +42,31 @@ const DialerForm = () => {
     return clearErrors();
   };
 
-  const onChangePhone = (value?: E164Number | undefined) => {
-    const phoneString = value?.toString() ?? "";
-    setValue("phone", phoneString);
-    trigger("phone");
-  };
+  const onChangePhone = useCallback(
+    (value?: E164Number | string | undefined) => {
+      const phoneString = value?.toString() ?? "";
+      const isValid = phoneString.length <= completePhoneNumberMaxLength;
+      const formated = isValid
+        ? phoneString
+        : phoneString?.slice(0, completePhoneNumberMaxLength);
+      console.log({ isValid, formated });
+
+      setValue("phone", formated);
+      trigger("phone");
+    },
+    [setValue, trigger]
+  );
 
   const clearPhoneFocus = () => {
     inputRef?.current?.blur();
+  };
+
+  const handlePaste = async () => {
+    const value = await readClipboardText();
+    const allNumbers = value?.replace(/\D/g, "");
+    const validNumbers = allNumbers?.slice(0, phoneMaxLength);
+    const formatedPhoneNumber = `+55${validNumbers}`;
+    onChangePhone(formatedPhoneNumber);
   };
 
   return (
@@ -56,22 +79,28 @@ const DialerForm = () => {
         <label className="label">
           <span className="label-text text-zinc-300">Discar para:</span>
         </label>
-        <Input
-          ref={inputRef}
-          country="BR"
-          defaultCountry="BR"
-          value={watch("phone")}
-          international={false}
-          placeholder={phonePlaceholder}
-          onChange={onChangePhone}
-          className={`phone-input ${showError ? "!input-error" : ""}`}
-        />
+        <div className="phone-input-wrapper relative">
+          <Input
+            country="BR"
+            defaultCountry="BR"
+            ref={inputRef}
+            value={watch("phone")}
+            international={false}
+            onChange={onChangePhone}
+            placeholder={phonePlaceholder}
+            className={`phone-input ${showError ? "!input-error" : ""}`}
+          />
+          <button
+            className="btn btn-square normal-case px-0 absolute top-0 right-1 bottom-0 mt-auto mb-auto btn-sm opacity-80"
+            id="clipboard"
+            onClick={handlePaste}
+          >
+            <GoPaste size="18" />
+          </button>
+        </div>
         <label className="label">
           <span className="label-text-alt text-error">
             &nbsp;{showError ? "Número inválido!" : ""}
-          </span>
-          <span className="label-text-alt text-error">
-            &nbsp;{showError ? errorMessage : ""}
           </span>
         </label>
       </div>
