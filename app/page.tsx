@@ -1,5 +1,3 @@
-"use client";
-
 import DialerForm from "@/components/DialerForm";
 import Logo from "@/components/Logo";
 

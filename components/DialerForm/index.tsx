@@ -1,12 +1,13 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 import { Form, useForm } from "react-hook-form";
 import schema from "./schema";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
 import { GoPaste } from "react-icons/go";
 import Input from "react-phone-number-input/input";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { E164Number } from "libphonenumber-js/types";
 import { DialerTo } from "./types";
 import {
@@ -17,6 +18,7 @@ import {
 import readClipboardText from "@/utils/readClipboardText";
 
 const DialerForm = () => {
+  const router = useRouter();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const {
     watch,
