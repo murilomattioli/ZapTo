@@ -1,24 +1,17 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
 import { Form, useForm } from "react-hook-form";
 import schema from "./schema";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
-import { GoPaste } from "react-icons/go";
-import Input from "react-phone-number-input/input";
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { E164Number } from "libphonenumber-js/types";
 import { DialerTo } from "./types";
-import {
-  completePhoneNumberMaxLength,
-  phoneMaxLength,
-  phonePlaceholder,
-} from "./constants";
-import readClipboardText from "@/utils/readClipboardText";
+import { completePhoneNumberMaxLength, phonePlaceholder } from "./constants";
+import PasteButton from "../PasteButton";
+import PhoneInput from "../PhoneInput";
 
 const DialerForm = () => {
-  const router = useRouter();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const {
     watch,
@@ -43,32 +36,23 @@ const DialerForm = () => {
     window.open(link, "_blank");
     return clearErrors();
   };
+  const onChangePhone = (value?: E164Number | string | undefined) => {
+    const phoneString = value?.toString() ?? "";
+    const isValid =
+      !!phoneString.length &&
+      phoneString.length <= completePhoneNumberMaxLength;
+    if (!isValid) return;
 
-  const onChangePhone = useCallback(
-    (value?: E164Number | string | undefined) => {
-      const phoneString = value?.toString() ?? "";
-      const isValid = phoneString.length <= completePhoneNumberMaxLength;
-      const formated = isValid
-        ? phoneString
-        : phoneString?.slice(0, completePhoneNumberMaxLength);
-      console.log({ isValid, formated });
+    const formated = isValid
+      ? phoneString
+      : phoneString?.slice(0, completePhoneNumberMaxLength);
 
-      setValue("phone", formated);
-      trigger("phone");
-    },
-    [setValue, trigger]
-  );
+    setValue("phone", formated);
+    trigger("phone");
+  };
 
   const clearPhoneFocus = () => {
     inputRef?.current?.blur();
-  };
-
-  const handlePaste = async () => {
-    const value = await readClipboardText();
-    const allNumbers = value?.replace(/\D/g, "");
-    const validNumbers = allNumbers?.slice(0, phoneMaxLength);
-    const formatedPhoneNumber = `+55${validNumbers}`;
-    onChangePhone(formatedPhoneNumber);
   };
 
   return (
@@ -76,37 +60,27 @@ const DialerForm = () => {
       className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full bg-black"
       control={control}
     >
-      <div className="form-control mb-2">
+      <div className="form-control mb-8 mt-[16px]">
         <span className="sr-only">Phone</span>
         <label className="label">
           <span className="label-text text-zinc-300">Discar para:</span>
         </label>
         <div className="phone-input-wrapper relative">
-          <Input
-            country="BR"
-            defaultCountry="BR"
+          <PhoneInput
             ref={inputRef}
             value={watch("phone")}
-            international={false}
             onChange={onChangePhone}
             placeholder={phonePlaceholder}
-            className={`phone-input ${showError ? "!input-error" : ""}`}
+            error={showError}
           />
-          <button
-            className="btn btn-square normal-case px-0 absolute top-0 right-1 bottom-0 mt-auto mb-auto btn-sm opacity-80"
-            id="clipboard"
-            onClick={handlePaste}
-          >
-            <GoPaste size="18" />
-          </button>
+          <PasteButton onPaste={onChangePhone} />
         </div>
         <label className="label">
           <span className="label-text-alt text-error">
-            &nbsp;{showError ? "Número inválido!" : ""}
+            {showError ? errors.phone?.message : ""}
           </span>
         </label>
       </div>
-
       <div className="flex flex-row-reverse">
         <span className="sr-only">Submit</span>
         <button hidden type="submit" onClick={clearPhoneFocus} />
