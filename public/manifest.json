@@ -21,12 +21,35 @@
     }
   ],
   "share_target": {
-    "action": "/target",
+    "action": "/?phone=%s",
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
-      "text": "phone"
+      "phone": "tel"
     }
+  },
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://web.whatsapp.com/"
+    },
+    {
+      "platform": "play",
+      "url": "https://web.telegram.org/"
+    }
+  ],
+  "categories": [
+    "utilities",
+    "productivity",
+    "social",
+    "tools",
+    "discador",
+    "whatsapp",
+    "telegram"
+  ],
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/"
   },
   "icons": [
     {
