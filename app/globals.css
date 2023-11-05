@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-auto overflow-x-hidden h-[100%] bg-[red];
+  @apply scroll-auto overflow-x-hidden h-[100%];
 }
 
 body {
