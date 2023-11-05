@@ -24,6 +24,12 @@ const PhoneInput = forwardRef(function Input(props: PhoneInputProps, ref) {
     defineMaxLength();
   }, [ref]);
 
+  const handleOnChange = (value?: E164Number | undefined) => {
+    navigator.vibrate(10);
+
+    if (onChange) onChange(value);
+  };
+
   return (
     <ReactPhoneNumberInput
       country="BR"
@@ -31,7 +37,7 @@ const PhoneInput = forwardRef(function Input(props: PhoneInputProps, ref) {
       ref={ref}
       value={value}
       international={false}
-      onChange={onChange}
+      onChange={handleOnChange}
       placeholder={placeholder}
       className={`phone-input pr-5 ${!!error ? "!input-error" : ""}`}
     />
