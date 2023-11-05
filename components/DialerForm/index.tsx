@@ -1,6 +1,7 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import schema from "./schema";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
@@ -12,6 +13,7 @@ import PasteButton from "../PasteButton";
 import PhoneInput from "../PhoneInput";
 
 const DialerForm = () => {
+  const searchParams = useSearchParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const {
     watch,
@@ -54,6 +56,10 @@ const DialerForm = () => {
   const clearPhoneFocus = () => {
     inputRef?.current?.blur();
   };
+
+  const phoneParam = searchParams.get("phone");
+
+  if (!!phoneParam) alert(phoneParam);
 
   return (
     <Form

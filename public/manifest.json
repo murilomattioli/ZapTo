@@ -7,6 +7,27 @@
   "background_color": "#66cc8a",
   "theme_color": "#66cc8a",
   "orientation": "natural",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "protocol_handlers": [
+    {
+      "protocol": "tel",
+      "url": "/?phone=%s"
+    },
+    {
+      "protocol": "sms",
+      "url": "/?phone=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/target",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "text": "phone"
+    }
+  },
   "icons": [
     {
       "src": "/ZapTo-192x192.png",
