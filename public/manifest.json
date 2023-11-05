@@ -1,8 +1,9 @@
 {
   "name": "ZapTo - Discador WhatsApp e Telegram",
   "short_name": "ZapTo",
-  "description": "Discador WhatsApp e Telegram",
+  "id": "ZapTo",
   "start_url": "/",
+  "description": "Discador WhatsApp e Telegram",
   "display": "standalone",
   "background_color": "#66cc8a",
   "theme_color": "#66cc8a",
@@ -20,19 +21,11 @@
       "url": "/?phone=%s"
     }
   ],
-  "share_target": {
-    "action": "/?phone=%s",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "phone": "tel"
-    }
-  },
   "intent_filters": [
     {
       "action": "VIEW",
       "href": "/?phone=%s",
-      "type": "text/x-vcard"
+      "type": "text"
     }
   ],
   "related_applications": [
@@ -76,14 +69,44 @@
       "type": "image/png"
     },
     {
+      "src": "/ZapTo-256x256-maskable.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "/ZapTo-384x384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
+      "src": "/ZapTo-384x384-maskable.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "/ZapTo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/ZapTo-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "display_override": ["window-control-overlay"],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 768
+  },
+  "share_target": {
+    "method": "GET",
+    "action": "/",
+    "params": {
+      "title": "phone"
+    }
+  }
 }
