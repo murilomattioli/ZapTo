@@ -28,6 +28,13 @@
       "phone": "tel"
     }
   },
+  "intent_filters": [
+    {
+      "action": "VIEW",
+      "href": "/?phone=%s",
+      "type": "text/x-vcard"
+    }
+  ],
   "related_applications": [
     {
       "platform": "play",
