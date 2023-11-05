@@ -97,7 +97,6 @@
       "purpose": "maskable"
     }
   ],
-  "display_override": ["window-control-overlay"],
   "prefer_related_applications": false,
   "edge_side_panel": {
     "preferred_height": 667,
@@ -109,5 +108,16 @@
     "params": {
       "title": "phone"
     }
+  },
+  "manifest_version": 2,
+  "navigation": {
+    "start_url": "/",
+    "matches": ["tel:*"],
+    "targets": [
+      {
+        "url": "/tel/:phoneNumber",
+        "actions": ["open_in_browser"]
+      }
+    ]
   }
 }
