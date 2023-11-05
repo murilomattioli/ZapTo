@@ -100,7 +100,8 @@
   "display_override": ["window-control-overlay"],
   "prefer_related_applications": false,
   "edge_side_panel": {
-    "preferred_width": 768
+    "preferred_height": 667,
+    "preferred_width": 375
   },
   "share_target": {
     "method": "GET",
