@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply scroll-auto overflow-x-hidden h-[100%] bg-[red];
+}
+
 body {
-  @apply flex flex-1 flex-col min-h-[100%] h-[100vh] bg-black;
+  @apply flex flex-1 flex-col h-[100%];
+}
+
+footer {
+  @apply footer justify-center items-center  text-neutral-content min-h-16 mb-0 mt-auto z-0 bg-black;
 }
 
 input.phone-input {

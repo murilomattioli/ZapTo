@@ -18,7 +18,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
         <meta name="theme-color" content="#000" />
         <title>ZapTo - Discador WhatsApp e Telegram</title>
       </head>
-      <body className="flex flex-1 scroll-auto overflow-x-hidden">
+      <body>
         <header>
           <GithubCorner />
         </header>
@@ -26,7 +26,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
         <div className="flex flex-1 flex-col z-10 bg-black" {...props} />
         <Analytics />
 
-        <footer className="footer justify-center items-center  text-neutral-content min-h-16 mb-0 mt-auto z-0 bg-black">
+        <footer>
           <a
             href="https://linktr.ee/murilomattioli"
             target="_blank"
