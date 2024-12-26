@@ -5,8 +5,6 @@ import { RiCloseLine } from "react-icons/ri";
 
 const Card = ({ onSave = () => { }, onClose = () => { }, onRefuse = () => { } }) => {
   return (
-    // Component with Tailwind inline styles
-
     <div className="max-w-[320px] flex items-start justify-between rounded-lg bg-white/20 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/56 p-4 text-gray-500 shadow-[0px_87px_78px_-39px_rgba(0,0,0,0.4)]">
       <div className="h-8 w-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-[#66cc8a] text-blue-500">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -40,9 +38,6 @@ const Installer = () => {
   const [prompt, setPrompt] = useState<any>(null)
   const [show, setShow] = useState(false)
 
-
-
-
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: any) => {
       e.preventDefault();
@@ -74,7 +69,7 @@ const Installer = () => {
   }
 
   return (
-    <div className="m-auto mt-[140px] animate-bounce ">
+    <div className="m-auto mt-[140px]">
       {show ? (
         <Card onSave={handleInstall} onClose={handleClose} onRefuse={handleClose}></Card>
       ) : null}
