@@ -1,3 +1,4 @@
+import { countryCodeLength, phoneMinLength } from "@/utils/phone/constants";
 import * as yup from "yup";
 
 export type DialerFormSchema = {
@@ -19,9 +20,18 @@ const schema: yup.ObjectSchema<DialerFormSchema> = yup
         },
       })
       .test({
+        name: "Incompleto",
+        message: "Inválido. O número é muito curto.",
+        test: (val) => {
+          const allDigitsExceptCountryCode = val?.slice(countryCodeLength);
+          const isValid =
+            Number(allDigitsExceptCountryCode?.length) >= phoneMinLength;
+          return isValid;
+        },
+      })
+      .test({
         name: "Número de Telefone",
-        message: `Ex: (00)0000-0000 ou (00)00000-0000;
-          O numero deve ter 10 ou 11 dígitos`,
+        message: `Número inválido. (Ex: 00 00000-0000)`,
         test: (val) => {
           const allDigitsExceptCountryCode = val?.slice(3);
           const rules = [

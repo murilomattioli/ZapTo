@@ -1,16 +1,22 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import schema from "./schema";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
-import Input from "react-phone-number-input/input";
 import React from "react";
 import { E164Number } from "libphonenumber-js/types";
 import { DialerTo } from "./types";
-import { phonePlaceholder } from "./constants";
+import {
+  phoneCompleteLength,
+  phonePlaceholder,
+} from "../../utils/phone/constants";
+import PasteButton from "../PasteButton";
+import PhoneInput from "../PhoneInput";
 
 const DialerForm = () => {
+  const searchParams = useSearchParams();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const {
     watch,
@@ -35,47 +41,57 @@ const DialerForm = () => {
     window.open(link, "_blank");
     return clearErrors();
   };
-
-  const onChangePhone = (value?: E164Number | undefined) => {
+  const onChangePhone = (value?: E164Number | string | undefined) => {
     const phoneString = value?.toString() ?? "";
-    setValue("phone", phoneString);
+    const isValid =
+      !!phoneString.length && phoneString.length <= phoneCompleteLength;
+
+    if (!isValid) return;
+
+    const formated = isValid
+      ? phoneString
+      : phoneString?.slice(0, phoneCompleteLength);
+
+    setValue("phone", formated);
     trigger("phone");
+    console.log({ isValid });
   };
 
   const clearPhoneFocus = () => {
     inputRef?.current?.blur();
   };
 
+  const phoneParam = searchParams.get("phone");
+
+  if (!!phoneParam) alert(phoneParam);
+
   return (
     <Form
       className="flex flex-col px-4 md:px-0 max-w-xs self-center w-full bg-black"
       control={control}
     >
-      <div className="form-control mb-2">
+      <div className="form-control mb-8 mt-[16px]">
         <span className="sr-only">Phone</span>
         <label className="label">
           <span className="label-text text-zinc-300">Discar para:</span>
         </label>
-        <Input
-          ref={inputRef}
-          country="BR"
-          defaultCountry="BR"
-          value={watch("phone")}
-          international={false}
-          placeholder={phonePlaceholder}
-          onChange={onChangePhone}
-          className={`phone-input ${showError ? "!input-error" : ""}`}
-        />
+        <div className="phone-input-wrapper relative">
+          <PhoneInput
+            ref={inputRef}
+            value={watch("phone")}
+            onChange={onChangePhone}
+            placeholder={phonePlaceholder}
+            error={showError}
+            success={canRedirect}
+          />
+          <PasteButton onPaste={onChangePhone} />
+        </div>
         <label className="label">
           <span className="label-text-alt text-error">
-            &nbsp;{showError ? "Número inválido!" : ""}
-          </span>
-          <span className="label-text-alt text-error">
-            &nbsp;{showError ? errorMessage : ""}
+            {showError ? errors.phone?.message : ""}
           </span>
         </label>
       </div>
-
       <div className="flex flex-row-reverse">
         <span className="sr-only">Submit</span>
         <button hidden type="submit" onClick={clearPhoneFocus} />
