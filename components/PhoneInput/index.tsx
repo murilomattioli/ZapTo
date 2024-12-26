@@ -1,10 +1,9 @@
 "use client";
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 import ReactPhoneNumberInput, {
   Props as PhoneInputComponentType,
 } from "react-phone-number-input/input";
 import { E164Number } from "libphonenumber-js/types";
-import { inputMaxLength } from "../../utils/phone/constants";
 
 export interface PhoneInputProps
   extends Omit<PhoneInputComponentType<Partial<HTMLInputElement>>, "onChange"> {
@@ -20,13 +19,6 @@ const PhoneInput = forwardRef(function Input(props: PhoneInputProps, ref) {
   const status = !!success ? "primary" : !!error ? "error" : undefined;
   const inputStatus = status ? ` !input-${status}` : "";
 
-  useEffect(() => {
-    const defineMaxLength = () => {
-      const inputRef = ref as React.MutableRefObject<HTMLInputElement>;
-      inputRef?.current?.setAttribute("maxlength", inputMaxLength.toString());
-    };
-    defineMaxLength();
-  }, [ref]);
 
   const handleOnChange = (value?: E164Number | undefined) => {
     navigator.vibrate(10);
