@@ -14,28 +14,21 @@
   "protocol_handlers": [
     {
       "protocol": "tel",
-      "url": "/?phone=%s"
+      "url": "/discador?phone=%s"
     },
     {
       "protocol": "sms",
-      "url": "/?phone=%s"
-    }
-  ],
-  "intent_filters": [
-    {
-      "action": "VIEW",
-      "href": "/?phone=%s",
-      "type": "text"
+      "url": "/discador?phone=%s"
     }
   ],
   "related_applications": [
     {
       "platform": "play",
-      "url": "https://web.whatsapp.com/"
+      "url": "https://play.google.com/store/apps/details?id=com.whatsapp"
     },
     {
       "platform": "play",
-      "url": "https://web.telegram.org/"
+      "url": "https://play.google.com/store/apps/details?id=org.telegram.messenger"
     }
   ],
   "categories": [
@@ -75,17 +68,6 @@
       "purpose": "maskable"
     },
     {
-      "src": "/ZapTo-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "/ZapTo-384x384-maskable.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
       "src": "/ZapTo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
@@ -98,26 +80,12 @@
     }
   ],
   "prefer_related_applications": false,
-  "edge_side_panel": {
-    "preferred_height": 667,
-    "preferred_width": 375
-  },
   "share_target": {
     "method": "GET",
     "action": "/",
     "params": {
-      "title": "phone"
+      "phone": "phone"
     }
   },
-  "manifest_version": 2,
-  "navigation": {
-    "start_url": "/",
-    "matches": ["tel:*"],
-    "targets": [
-      {
-        "url": "/tel/:phoneNumber",
-        "actions": ["open_in_browser"]
-      }
-    ]
-  }
+  "manifest_version": 3
 }

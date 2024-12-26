@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/clipboard.js"
+    "utils/**.ts"
   ],
   "exclude": ["node_modules"]
 }

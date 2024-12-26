@@ -8,7 +8,10 @@ import { FaTelegramPlane } from "react-icons/fa";
 import React from "react";
 import { E164Number } from "libphonenumber-js/types";
 import { DialerTo } from "./types";
-import { completePhoneNumberMaxLength, phonePlaceholder } from "./constants";
+import {
+  phoneCompleteLength,
+  phonePlaceholder,
+} from "../../utils/phone/constants";
 import PasteButton from "../PasteButton";
 import PhoneInput from "../PhoneInput";
 
@@ -41,16 +44,17 @@ const DialerForm = () => {
   const onChangePhone = (value?: E164Number | string | undefined) => {
     const phoneString = value?.toString() ?? "";
     const isValid =
-      !!phoneString.length &&
-      phoneString.length <= completePhoneNumberMaxLength;
+      !!phoneString.length && phoneString.length <= phoneCompleteLength;
+
     if (!isValid) return;
 
     const formated = isValid
       ? phoneString
-      : phoneString?.slice(0, completePhoneNumberMaxLength);
+      : phoneString?.slice(0, phoneCompleteLength);
 
     setValue("phone", formated);
     trigger("phone");
+    console.log({ isValid });
   };
 
   const clearPhoneFocus = () => {
@@ -78,6 +82,7 @@ const DialerForm = () => {
             onChange={onChangePhone}
             placeholder={phonePlaceholder}
             error={showError}
+            success={canRedirect}
           />
           <PasteButton onPaste={onChangePhone} />
         </div>

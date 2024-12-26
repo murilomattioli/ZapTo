@@ -1,8 +1,8 @@
 import GithubCorner from "@/components/GithubCorner";
-import "./globals.css";
-import { LuToyBrick } from "react-icons/lu";
-import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { Inter } from "next/font/google";
+import { LuToyBrick } from "react-icons/lu";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],

@@ -2,9 +2,10 @@
 
 import readClipboardText from "@/utils/readClipboardText";
 import { GoPaste } from "react-icons/go";
-import { phoneMaxLength } from "../DialerForm/constants";
+import { phoneMaxLength } from "../../utils/phone/constants";
 import { useCallback } from "react";
 import useClipboard from "@/app/store/useClipboard";
+import toNumber from "@/utils/phone/toNumber";
 
 export type PasteButtonProps = {
   onPaste?: (value: string | undefined) => void;
@@ -18,7 +19,9 @@ const PasteButton = ({ onPaste }: PasteButtonProps) => {
     : "";
 
   const clipboardTextToPhone = (value: string | void): string => {
-    const allNumbers = value?.replace("+55", "").replace(/\D/g, "");
+    const allNumbers = toNumber(value);
+    console.log({ allNumbers });
+
     if (allNumbers?.length === 0) return "";
 
     const phone = allNumbers?.slice(0, phoneMaxLength);

@@ -1,3 +1,4 @@
+import { countryCodeLength, phoneMinLength } from "@/utils/phone/constants";
 import * as yup from "yup";
 
 export type DialerFormSchema = {
@@ -22,10 +23,9 @@ const schema: yup.ObjectSchema<DialerFormSchema> = yup
         name: "Incompleto",
         message: "Inválido. O número é muito curto.",
         test: (val) => {
-          const allDigitsExceptCountryCode = val?.slice(3);
-          const minLength = 10;
+          const allDigitsExceptCountryCode = val?.slice(countryCodeLength);
           const isValid =
-            Number(allDigitsExceptCountryCode?.length) >= minLength;
+            Number(allDigitsExceptCountryCode?.length) >= phoneMinLength;
           return isValid;
         },
       })
