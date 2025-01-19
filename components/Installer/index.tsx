@@ -67,7 +67,7 @@ const Installer = () => {
   }
 
   return (
-    <div className="m-auto mt-[140px] animate-bounce ">
+    <div className="m-auto mt-[140px]">
       {show ? (
         <Card onSave={handleInstall} onClose={handleClose} onRefuse={handleClose}></Card>
       ) : null}

@@ -37,6 +37,8 @@ const PhoneInput = forwardRef(function Input(props: PhoneInputProps, ref) {
       placeholder={placeholder}
       className={`phone-input${inputStatus}`}
       data-theme="whatsapp"
+      autofocus="true"
+      tabindex="0"
     />
   );
 });
