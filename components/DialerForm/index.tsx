@@ -61,7 +61,7 @@ const DialerForm = () => {
     inputRef?.current?.blur();
   };
 
-  const phoneParam = searchParams.get("phone");
+  const phoneParam = searchParams?.get("phone");
 
   if (!!phoneParam) alert(phoneParam);
 

@@ -10,9 +10,9 @@ export default function Telefone() {
 
   useEffect(() => {
     // Lógica para manipular o deep link
-    if (pathname === "/Telefone" && searchParams.get("telefone")) {
+    if (pathname === "/Telefone" && searchParams?.get("telefone")) {
       // Faça algo com o número de telefone (query.telefone)
-      console.log("DEEPLINK:", searchParams.get("telefone"));
+      console.log("DEEPLINK:", searchParams?.get("telefone"));
     }
   }, [router, searchParams, pathname]);
   return null;

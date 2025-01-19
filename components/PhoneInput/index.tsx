@@ -21,7 +21,7 @@ const PhoneInput = forwardRef(function Input(props: PhoneInputProps, ref) {
 
 
   const handleOnChange = (value?: E164Number | undefined) => {
-    navigator.vibrate(10);
+    navigator?.vibrate(10);
 
     if (onChange) onChange(value);
   };
